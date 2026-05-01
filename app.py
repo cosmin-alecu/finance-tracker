@@ -12,6 +12,20 @@ from reports import monthly_summary
 app = Flask(__name__)
 
 
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({
+        "message": "Finance Tracker API",
+        "routes": {
+            "accounts": "/accounts",
+            "transactions": "/transactions",
+            "categories": "/categories",
+            "budgets": "/budgets",
+            "reports": "/reports/summary"
+        }
+    })
+
+
 @app.route("/accounts", methods=['GET'])
 def get_accounts():
     con = get_connection()
