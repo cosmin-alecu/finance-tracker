@@ -30,6 +30,7 @@ def delete_account(id):
     con = get_connection()
     cur = con.cursor()
     with con:
+        cur.execute("DELETE FROM transactions WHERE account_id = ?", (id,))
         cur.execute("DELETE FROM accounts WHERE id = ?", (id,))
     con.close()
     print(f"Account {id} deleted")
