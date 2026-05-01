@@ -1,3 +1,4 @@
+from flask import render_template
 import argparse
 import os
 from flask import Flask, request, jsonify
@@ -12,18 +13,9 @@ from reports import monthly_summary
 app = Flask(__name__)
 
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def index():
-    return jsonify({
-        "message": "Finance Tracker API",
-        "routes": {
-            "accounts": "/accounts",
-            "transactions": "/transactions",
-            "categories": "/categories",
-            "budgets": "/budgets",
-            "reports": "/reports/summary"
-        }
-    })
+    return render_template("index.html")
 
 
 @app.route("/accounts", methods=['GET'])
